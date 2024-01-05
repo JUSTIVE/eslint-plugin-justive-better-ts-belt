@@ -34,7 +34,7 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
     "rules": {
-        "justive-better-ts-belt/strictPatternMatching": 2
+        "justive-better-ts-belt/noPipeForSingleFunction": 2
     }
 }
 ```
@@ -42,7 +42,14 @@ Then configure the rules you want to use under the rules section.
 ## Rules
 
 <!-- begin auto-generated rules list -->
-TODO: Run eslint-doc-generator to generate the rules list.
+
+🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
+
+| Name                                                             | Description                      | 🔧 |
+| :--------------------------------------------------------------- | :------------------------------- | :- |
+| [noPipeForSingleFunction](docs/rules/noPipeForSingleFunction.md) | no unexhaustive pattern matching | 🔧 |
+| [preferTacitStyle](docs/rules/preferTacitStyle.md)               | no unexhaustive pattern matching | 🔧 |
+
 <!-- end auto-generated rules list -->
 
 

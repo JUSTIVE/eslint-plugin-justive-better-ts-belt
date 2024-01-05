@@ -1,11 +1,11 @@
-import strictPatternMatching from './no-pipe-for-single-function'
+import noPipeForSingleFunction from './no-pipe-for-single-function'
 import { ESLintUtils } from '@typescript-eslint/utils'
 
 const ruleTester = new ESLintUtils.RuleTester({
   parser: '@typescript-eslint/parser'
 })
 
-ruleTester.run('justive-better-ts-belt', strictPatternMatching, {
+ruleTester.run('justive-better-ts-belt', noPipeForSingleFunction, {
   valid: [
     {
       code: `pipe(

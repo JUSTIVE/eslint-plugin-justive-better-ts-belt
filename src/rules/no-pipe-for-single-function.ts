@@ -34,28 +34,21 @@ const noPipeForSingleFunction = createRule<Options, MessageIds>({
                 },
                 arguments: [
                   { type: AST_NODE_TYPES.Identifier },
-                  P.select('secondArg')
-                ]
-              }
-            },
-            ({ secondArg }) => {
-              match(secondArg)
-                .with(
                   P.union(
                     {
                       type: AST_NODE_TYPES.CallExpression,
                       callee: tSBeltFunctionPattern
                     },
                     tSBeltFunctionPattern
-                  ),
-                  () => {
-                    context.report({
-                      node,
-                      messageId: 'noPipeForSingleFunction'
-                    })
-                  }
-                )
-                .otherwise(ignore)
+                  )
+                ]
+              }
+            },
+            () => {
+              context.report({
+                node,
+                messageId: 'noPipeForSingleFunction'
+              })
             }
           )
           .otherwise(ignore)
