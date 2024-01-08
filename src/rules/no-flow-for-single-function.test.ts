@@ -46,6 +46,12 @@ ruleTester.run('justive-better-ts-belt', noFlowForSingleFunction, {
         O.getExn
       )`,
       errors: [{ messageId: 'noFlowForSingleFunction' }]
+    },
+    {
+      code: `F.tap(flow(
+        O.getExn
+      ))`,
+      errors: [{ messageId: 'noFlowForSingleFunction' }]
     }
   ]
 })

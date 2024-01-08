@@ -14,18 +14,15 @@ type Options = []
 const noFlowForSingleFunction = createRule<Options, MessageIds>({
   create(context) {
     return {
-      ExpressionStatement: function (node) {
+      CallExpression: function (node) {
         match(node)
           .with(
             {
-              expression: {
-                type: AST_NODE_TYPES.CallExpression,
-                callee: {
-                  type: AST_NODE_TYPES.Identifier,
-                  name: 'flow'
-                },
-                arguments: [P._]
-              }
+              callee: {
+                type: AST_NODE_TYPES.Identifier,
+                name: 'flow'
+              },
+              arguments: [P._]
             },
             () => {
               context.report({
