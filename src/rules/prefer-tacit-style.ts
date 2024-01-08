@@ -8,7 +8,7 @@ const createRule = ESLintUtils.RuleCreator(
 
 const ignore = () => {}
 
-type MessageIds = 'preferTacitStyle'
+type MessageIds = 'preferTacitStylePipe' | 'preferTacitStyle'
 type Options = []
 
 const tSBeltFunctionPattern = {
@@ -62,7 +62,7 @@ const preferTacitStyle = createRule<Options, MessageIds>({
               if (firstFeedValue === argumentSymbol)
                 context.report({
                   node,
-                  messageId: 'preferTacitStyle'
+                  messageId: 'preferTacitStylePipe'
                 })
             }
           )
@@ -113,17 +113,19 @@ const preferTacitStyle = createRule<Options, MessageIds>({
       }
     }
   },
-  name: 'justive-better-ts-belt',
+  name: 'preferTacitStyle',
   meta: {
     type: 'suggestion',
     messages: {
       preferTacitStyle:
-        "pipe function with single ts-belt's function could be used as data-first function."
+        'This lambda is safe to be removed. Use the function directly instead.',
+      preferTacitStylePipe:
+        'This lambda and pipe function is safe to be removed. Use the function directly instead.'
     },
     fixable: 'code',
     schema: [],
     docs: {
-      description: 'no unexhaustive pattern matching',
+      description: 'prefer tacit style programming.',
 
       recommended: 'error'
     }

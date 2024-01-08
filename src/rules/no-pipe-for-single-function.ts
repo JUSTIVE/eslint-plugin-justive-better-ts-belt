@@ -55,17 +55,17 @@ const noPipeForSingleFunction = createRule<Options, MessageIds>({
       }
     }
   },
-  name: 'justive-better-ts-belt',
+  name: 'noPipeForSingleFunction',
   meta: {
     type: 'suggestion',
     messages: {
       noPipeForSingleFunction:
-        "pipe function with single ts-belt's function could be used as data-first function."
+        "Pipe function with single ts-belt's function could be used as data-first function."
     },
     fixable: 'code',
     schema: [],
     docs: {
-      description: 'no unexhaustive pattern matching',
+      description: "no pipe function with single ts-belt's function.",
 
       recommended: 'error'
     }

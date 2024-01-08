@@ -10,7 +10,7 @@ ruleTester.run('justive-better-ts-belt', preferTacitStyle, {
   invalid: [
     {
       code: `const x = (a) => pipe(a,O.getWithDefault(3))`,
-      errors: [{ messageId: 'preferTacitStyle' }]
+      errors: [{ messageId: 'preferTacitStylePipe' }]
     },
     {
       code: `const x = (a) => O.getWithDefault(a,3)`,
