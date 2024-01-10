@@ -22,27 +22,24 @@ const tSBeltFunctionPattern = {
 const noPipeForSingleFunction = createRule<Options, MessageIds>({
   create(context) {
     return {
-      ExpressionStatement: function (node) {
+      CallExpression: function (node) {
         match(node)
           .with(
             {
-              expression: {
-                type: AST_NODE_TYPES.CallExpression,
-                callee: {
-                  type: AST_NODE_TYPES.Identifier,
-                  name: 'pipe'
-                },
-                arguments: [
-                  { type: AST_NODE_TYPES.Identifier },
-                  P.union(
-                    {
-                      type: AST_NODE_TYPES.CallExpression,
-                      callee: tSBeltFunctionPattern
-                    },
-                    tSBeltFunctionPattern
-                  )
-                ]
-              }
+              callee: {
+                type: AST_NODE_TYPES.Identifier,
+                name: 'pipe'
+              },
+              arguments: [
+                { type: AST_NODE_TYPES.Identifier },
+                P.union(
+                  {
+                    type: AST_NODE_TYPES.CallExpression,
+                    callee: tSBeltFunctionPattern
+                  },
+                  tSBeltFunctionPattern
+                )
+              ]
             },
             () => {
               context.report({

@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-justive-better-ts-belt",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "prevent using non-exhaustive pattern matching in typescript",
   "keywords": [
     "eslint",

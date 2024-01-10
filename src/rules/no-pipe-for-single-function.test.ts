@@ -43,10 +43,24 @@ ruleTester.run('justive-better-ts-belt', noPipeForSingleFunction, {
       errors: [{ messageId: 'noPipeForSingleFunction' }]
     },
     {
+      code: `F.tap(pipe(
+        a,
+        O.getWithDefault("b")
+      ))`,
+      errors: [{ messageId: 'noPipeForSingleFunction' }]
+    },
+    {
       code: `pipe(
         a,
         O.getExn
       )`,
+      errors: [{ messageId: 'noPipeForSingleFunction' }]
+    },
+    {
+      code: `F.tap(pipe(
+        a,
+        O.getExn
+      ))`,
       errors: [{ messageId: 'noPipeForSingleFunction' }]
     }
   ]
