@@ -31,7 +31,7 @@ const noPipeForSingleFunction = createRule<Options, MessageIds>({
                 name: 'pipe'
               },
               arguments: [
-                { type: AST_NODE_TYPES.Identifier },
+                P._,
                 P.union(
                   {
                     type: AST_NODE_TYPES.CallExpression,
