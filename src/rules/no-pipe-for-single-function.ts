@@ -35,8 +35,11 @@ const noPipeForSingleFunction = createRule<Options, MessageIds>({
                 name: 'pipe'
               },
               arguments: [
-                P.union(tSBeltFunctionPattern, {
-                  type: AST_NODE_TYPES.Identifier
+                P.union({
+                  type: P.union(
+                    AST_NODE_TYPES.Identifier,
+                    AST_NODE_TYPES.MemberExpression
+                  )
                 }),
                 P.union(
                   {
@@ -47,12 +50,16 @@ const noPipeForSingleFunction = createRule<Options, MessageIds>({
                 )
               ]
             },
-            () => {
-              console.log(node.arguments)
-              context.report({
-                node,
-                messageId: 'noPipeForSingleFunction'
-              })
+            (node_) => {
+              const locDiff =
+                node_.arguments[0].loc.end.line -
+                node_.arguments[0].loc.start.line
+
+              if (locDiff <= 1)
+                context.report({
+                  node,
+                  messageId: 'noPipeForSingleFunction'
+                })
             }
           )
           .otherwise(ignore)
