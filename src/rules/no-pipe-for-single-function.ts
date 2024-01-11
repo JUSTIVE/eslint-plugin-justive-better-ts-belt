@@ -54,8 +54,9 @@ const noPipeForSingleFunction = createRule<Options, MessageIds>({
               const locDiff =
                 node_.arguments[0].loc.end.line -
                 node_.arguments[0].loc.start.line
-
-              if (locDiff <= 1)
+              const rangeDiff =
+                node_.arguments[0].range[1] - node_.arguments[0].range[0]
+              if (locDiff <= 1 || rangeDiff > 20)
                 context.report({
                   node,
                   messageId: 'noPipeForSingleFunction'
