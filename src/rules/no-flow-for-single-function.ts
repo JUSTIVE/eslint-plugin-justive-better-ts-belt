@@ -46,7 +46,6 @@ const noFlowForSingleFunction = createRule<Options, MessageIds>({
     schema: [],
     docs: {
       description: "no flow function with single ts-belt's function.",
-
       recommended: 'error'
     }
   },

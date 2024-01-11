@@ -16,6 +16,10 @@ const tSBeltFunctionPattern = {
   object: {
     type: AST_NODE_TYPES.Identifier,
     name: P.union('A', 'B', 'F', 'G', 'N', 'O', 'R', 'S')
+  },
+  property: {
+    type: AST_NODE_TYPES.Identifier,
+    name: P.not(P.union('fromExecution', 'fromPromise', 'fromNullable'))
   }
 } as const
 
@@ -31,12 +35,9 @@ const noPipeForSingleFunction = createRule<Options, MessageIds>({
                 name: 'pipe'
               },
               arguments: [
-                {
-                  type: P.union(
-                    AST_NODE_TYPES.MemberExpression,
-                    AST_NODE_TYPES.Identifier
-                  )
-                },
+                P.union(tSBeltFunctionPattern, {
+                  type: AST_NODE_TYPES.Identifier
+                }),
                 P.union(
                   {
                     type: AST_NODE_TYPES.CallExpression,
@@ -47,6 +48,7 @@ const noPipeForSingleFunction = createRule<Options, MessageIds>({
               ]
             },
             () => {
+              console.log(node.arguments)
               context.report({
                 node,
                 messageId: 'noPipeForSingleFunction'

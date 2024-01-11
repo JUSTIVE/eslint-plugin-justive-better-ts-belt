@@ -16,6 +16,10 @@ const tSBeltFunctionPattern = {
   object: {
     type: AST_NODE_TYPES.Identifier,
     name: P.union('A', 'B', 'F', 'G', 'N', 'O', 'R', 'S')
+  },
+  property: {
+    type: AST_NODE_TYPES.Identifier,
+    name: P.not(P.union('fromExecution', 'fromPromise', 'fromNullable'))
   }
 } as const
 
